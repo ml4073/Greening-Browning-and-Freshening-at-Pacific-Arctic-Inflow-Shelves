@@ -3,7 +3,8 @@
 Jupyter notebooks that produce every figure in the manuscript and its supplement. This is a
 snapshot of a working research project, not a package. Each notebook has been cut down to the
 cells that the manuscript's figures actually need; outputs are left in place so a reader can see each
-figure next to the code that made it.
+figure next to the code that made it. Note that much of this code has been written with help from 
+claude code.
 
 If you use this code, cite the Zenodo archive: https://doi.org/10.5281/zenodo.23921319 
 
