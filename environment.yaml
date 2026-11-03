@@ -1,0 +1,74 @@
+# Conda environment for the DBO satellite-trends paper notebooks
+# (1_pull_data/ and 2_figures/ in this repository).
+#
+# Setup (one time, ~5 min):
+#   conda env create -f environment.yaml
+#   conda activate pace_chl_v2
+#   python -m ipykernel install --user --name pace_chl_v2 \
+#       --display-name "Python (pace_chl_v2)"
+#
+# Then in Jupyter / VS Code, pick the kernel "Python (pace_chl_v2)".
+#
+# Update later if anything is missing:
+#   conda env update -f environment.yaml --prune
+#
+# First-time EarthData credentials prompt happens in-notebook via
+#   earthaccess.login(persist=True)
+# which caches them in ~/.netrc
+
+name: pace_chl_v2
+
+channels:
+  - conda-forge
+
+dependencies:
+  # ---- Python ----
+  - python=3.12
+
+  # ---- Core numerical / data ----
+  - numpy>=1.24
+  - pandas>=2.0
+  - scipy>=1.11
+
+  # ---- xarray + cloud-native chunked I/O ----
+  - xarray>=2024.1
+  - zarr>=2.16
+  - dask>=2024.1
+  - h5netcdf>=1.2
+  - netcdf4>=1.6          # alternate NetCDF backend (some files prefer it)
+  - bottleneck            # speeds up xarray reductions like .mean(), .median()
+
+  # ---- NASA EarthData streaming ----
+  - earthaccess>=0.10
+  - fsspec
+  - s3fs
+  - aiohttp
+  - requests
+
+  # ---- Geospatial / projection / regridding ----
+  # cartopy>=0.22 is REQUIRED — earlier versions break with shapely 2.x
+  - pyresample>=1.27
+  - pyproj>=3.6
+  - cartopy>=0.22
+  - shapely>=2.0
+  - geos                  # underlying C library cartopy + shapely both need
+
+  # ---- Reading the DBO box xlsx file ----
+  - openpyxl
+
+  # ---- Plotting ----
+  - matplotlib>=3.8
+
+  # ---- Time-series statistics (optional but useful) ----
+  # Used by the AR(1) lag-as-predictor cell as an alternative to the
+  # pure-scipy OLS implementation already in the notebook.
+  - statsmodels>=0.14
+
+  # ---- Jupyter ----
+  - jupyter
+  - notebook
+  - ipykernel
+  - ipywidgets
+
+  # ---- General utilities ----
+  - tqdm                  # progress bars used by earthaccess
