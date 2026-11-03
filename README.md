@@ -5,7 +5,8 @@ snapshot of a working research project, not a package. Each notebook has been cu
 cells that the manuscript's figures actually need; outputs are left in place so a reader can see each
 figure next to the code that made it.
 
-If you use this code, cite the Zenodo archive: **[Zenodo DOI to be added at release]**.
+If you use this code, cite the Zenodo archive: https://doi.org/10.5281/zenodo.23921319 
+
 
 ## Setup
 
